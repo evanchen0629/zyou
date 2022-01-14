@@ -1,93 +1,10 @@
-import {
-  quicktype,
-  InputData,
-  jsonInputForTargetLanguage,
-  JSONSchemaInput,
-  FetchingJSONSchemaStore,
-} from 'quicktype-core'
-
-import fs from 'fs'
 import requestData from './requestData'
-
-async function quicktypeJSON(
-  targetLanguage: string,
-  typeName: string,
-  jsonString: string
-) {
-  const jsonInput = jsonInputForTargetLanguage(targetLanguage)
-
-  // We could add multiple samples for the same desired
-  // type, or many sources for other types. Here we're
-  // just making one type from one piece of sample JSON.
-  await jsonInput.addSource({
-    name: typeName,
-    samples: [jsonString],
-  })
-
-  const inputData = new InputData()
-  inputData.addInput(jsonInput)
-
-  return await quicktype({
-    inputData,
-    lang: targetLanguage,
-    allPropertiesOptional: true,
-    rendererOptions: {
-      'just-types': 'true',
-      'runtime-typecheck': 'true',
-      'acronym-style': 'original',
-    },
-  })
-}
-
-async function quicktypeJSONSchema(
-  targetLanguage: string,
-  typeName: string,
-  jsonSchemaString: string
-) {
-  const schemaInput = new JSONSchemaInput(new FetchingJSONSchemaStore())
-
-  // We could add multiple schemas for multiple types,
-  // but here we're just making one type from JSON schema.
-  await schemaInput.addSource({ name: typeName, schema: jsonSchemaString })
-
-  const inputData = new InputData()
-  inputData.addInput(schemaInput)
-
-  return await quicktype({
-    inputData,
-    lang: targetLanguage,
-    allPropertiesOptional: true,
-    rendererOptions: {
-      'just-types': 'true',
-      'runtime-typecheck': 'true',
-      'acronym-style': 'original',
-    },
-  })
-}
+import generateDefinitions from './generateDefinitions'
 
 async function main() {
-  const data = await requestData('https://petstore.swagger.io/v2/swagger.json')
-  console.log(data)
-
-  const { lines: swiftPerson } = await quicktypeJSONSchema(
-    'TypeScript',
-    'Person',
-    JSON.stringify({
-      type: 'object',
-      properties: {
-        code: {
-          type: 'integer',
-          format: 'int32',
-        },
-        type: {
-          type: 'string',
-        },
-        message: {
-          type: 'string',
-        },
-      },
-    })
+  const data = await requestData(
+    'http://117874-wework-scrm-operation.test.za-tech.net/v2/api-docs'
   )
-  fs.writeFileSync('./Person.ts', swiftPerson.join('\n'))
+  generateDefinitions(data)
 }
 main()
