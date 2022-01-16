@@ -18,9 +18,19 @@ export default (data: any) => {
           response,
           data.definitions
         )
-
-        writeData('params', path as string, paramsJsonSchema)
-        writeData('response', path as string, responseJsonSchema)
+        // const template = fs.readFileSync('./src/template.ts', {
+        //   encoding: 'utf8',
+        // })
+        // const a = ejs.render(template, {
+        //   alias: formatAlias(path as string),
+        //   path,
+        //   methods,
+        //   params: formatParamsInterface(path as string, 'params'),
+        //   response: formatParamsInterface(path as string, 'response'),
+        // })
+        // console.log(a)
+        await writeData('params', path as string, paramsJsonSchema)
+        await writeData('response', path as string, responseJsonSchema)
       })
     } catch (error) {
       console.log(path)

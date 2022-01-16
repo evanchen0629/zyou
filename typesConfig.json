@@ -1,0 +1,6 @@
+{
+  "path": "http://wework-scrm-operation.test.za-tech.net/v2/api-docs",
+  "paramsAlias": "params1",
+  "responseAlias": "response1",
+  "output": "src/types"
+}

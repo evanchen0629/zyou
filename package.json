@@ -12,10 +12,12 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.24.0",
+    "ejs": "^3.1.6",
     "lodash": "^4.17.21",
     "quicktype-core": "^6.0.70"
   },
   "devDependencies": {
+    "@types/ejs": "^3.1.0",
     "@types/lodash": "^4.14.178",
     "@types/node": "^17.0.8",
     "eslint": "^8.6.0",

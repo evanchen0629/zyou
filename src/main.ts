@@ -1,21 +1,15 @@
 import requestData from './requestData'
 import generateDefinitions from './generateDefinitions'
 import clearFile from './clearFile'
+import getConfig from './getConfig'
 
 async function main() {
-  clearFile()
-  const data = await requestData(
-    'http://wework-scrm-operation.test.za-tech.net/v2/api-docs'
-  )
-
+  const config = getConfig()
+  clearFile(config)
+  const data = await requestData(config.path)
   generateDefinitions(data)
+  process.on('exit', function () {
+    console.log('Goodbye!')
+  })
 }
 main()
-// async function main() {
-//   const { lines } = await quicktypeJSONSchema(
-//     'TypeScript',
-//     'aaa',
-//     JSON.stringify({})
-//   )
-//   console.log(lines)
-// }
