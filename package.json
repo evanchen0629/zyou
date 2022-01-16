@@ -1,8 +1,8 @@
 {
   "name": "zyou",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "bin": {
-    "zyou": "lib/run.js"
+    "zyou": "bin/run.js"
   },
   "description": "",
   "scripts": {
