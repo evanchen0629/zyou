@@ -16,6 +16,7 @@
     "quicktype-core": "^6.0.70"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.178",
     "@types/node": "^17.0.8",
     "eslint": "^8.6.0",
     "eslint-config-airbnb": "^19.0.4",

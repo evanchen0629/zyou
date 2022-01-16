@@ -1,16 +1,82 @@
-import { quicktypeJSONSchema } from './quickType'
-import fs from 'fs'
+import _ from 'lodash'
+import writeData from './writeData'
+
 export default (data: any) => {
-  Reflect.ownKeys(data.definitions).map(async (item, index) => {
+  Reflect.ownKeys(data.paths).forEach(async (path, index) => {
     try {
-      const { lines: swiftPerson } = await quicktypeJSONSchema(
-        'TypeScript',
-        item as string,
-        JSON.stringify(data.definitions[item])
-      )
-      fs.writeFileSync('./interface.ts', swiftPerson.join('\n'), { flag: 'a+' })
+      Reflect.ownKeys(data.paths[path]).forEach(async (methods) => {
+        const params = data.paths[path][methods]?.parameters
+        const paramsJsonSchema = params2jsonschema(
+          params,
+          data.definitions,
+          methods as string,
+          path
+        )
+        const response = data.paths[path][methods].responses['200']
+
+        const responseJsonSchema = response2jsonschema(
+          response,
+          data.definitions
+        )
+
+        writeData('params', path as string, paramsJsonSchema)
+        writeData('response', path as string, responseJsonSchema)
+      })
     } catch (error) {
-      console.log(item)
+      console.log(path)
     }
   })
+}
+
+const params2jsonschema = (
+  params: any[],
+  definitions: any,
+  methods: string,
+  path: any
+) => {
+  if (methods === 'post') {
+    try {
+      const definitionsKey = params[0].schema.$ref
+      if (!definitionsKey) return {}
+      return {
+        definitions,
+        $ref: definitionsKey,
+      }
+    } catch (error) {
+      return {}
+    }
+  }
+  if (methods === 'get') {
+    return getParams2jsonschema(params)
+  }
+}
+
+const getParams2jsonschema = (params: any[]) => {
+  if (!params) return {}
+  const properties = params.reduce((acc, cur) => {
+    acc[cur.name] = {
+      type: cur.type,
+      format: cur.format,
+      description: cur.description,
+      allowEmptyValue: false,
+    }
+    return acc
+  }, {})
+  return {
+    type: 'object',
+    properties,
+  }
+}
+
+const response2jsonschema = (response: any, definitions: any) => {
+  try {
+    const definitionsKey = response.schema.$ref
+    if (!definitionsKey) return {}
+    return {
+      definitions,
+      $ref: definitionsKey,
+    }
+  } catch (error) {
+    return {}
+  }
 }
