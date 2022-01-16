@@ -1,14 +1,16 @@
 {
   "name": "zyou",
-  "version": "1.0.0",
+  "version": "0.0.1",
+  "bin": {
+    "zyou": "lib/run.js"
+  },
   "description": "",
-  "main": "./lib/main.js",
   "scripts": {
     "watch": "tsc -w",
     "start": "node lib/main"
   },
   "keywords": [],
-  "author": "",
+  "author": "chenchengzuo",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.24.0",
