@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import { formatParamsInterface } from './utils'
 import writeData from './writeData'
 
 export default (data: any) => {
@@ -29,6 +30,7 @@ export default (data: any) => {
         //   response: formatParamsInterface(path as string, 'response'),
         // })
         // console.log(a)
+
         await writeData('params', path as string, paramsJsonSchema)
         await writeData('response', path as string, responseJsonSchema)
       })

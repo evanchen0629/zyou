@@ -1,8 +1,13 @@
 import { quicktypeJSONSchema } from './quickType'
-import { formatParamsName, formatResponseName } from './utils'
+import {
+  formatParamsInterface,
+  formatParamsName,
+  formatResponseName,
+} from './utils'
 import fs from 'fs'
 import getConfig from './getConfig'
 import path from 'path'
+import colors from 'colors'
 
 export default async function writeData(
   type: 'params' | 'response',
@@ -18,6 +23,10 @@ export default async function writeData(
   fs.writeFileSync(typeMapping(config)[type].writePath, lines.join('\n'), {
     flag: 'a+',
   })
+  console.log(
+    colors.yellow('generate: '),
+    formatParamsInterface(path as string, 'params')
+  )
 }
 
 export const typeMapping = (config: any) => {
