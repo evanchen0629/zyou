@@ -55,5 +55,5 @@ Zyou 是一个用于生成「前端接口层代码」以及对应「TypeScript �
 
 ## 常见问题
 
-- 常见问题太多了,就不列举了,有什么地方使用的不爽请联系邮箱chenchengzuo@zhongan.com
+- 常见问题太多了,就不列举了,有什么地方使用的不爽请联系邮箱chenchengzuo@zhongan.com,最后欢迎大家fork&pr
 
