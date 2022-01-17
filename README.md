@@ -30,8 +30,8 @@ Zyou 是一个用于生成「前端接口层代码」以及对应「TypeScript �
    ```json
    {
      "path": "http://wework-scrm-operation.test.za-tech.net/v2/api-docs", // swagger的地址
-     "paramsAlias": "params1",	// 请求参数的文件名
-     "responseAlias": "response1", // 响应参数的文件名
+     "paramsAlias": "params",	// 请求参数的文件名
+     "responseAlias": "response", // 响应参数的文件名
      "output": "src/types" // 生成的文件存放的地址
    }
    ```
