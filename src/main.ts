@@ -1,22 +1,13 @@
-import requestData from './requestData'
-import generateDefinitions from './generateDefinitions'
-import clearFile from './clearFile'
-import getConfig from './getConfig'
-import colors from 'colors'
+import { Command } from 'commander'
+import inquirer from 'inquirer'
+import { typeMapping, prompList } from './typeMapping'
 
-async function main() {
-  const config = getConfig()
-  clearFile(config)
-  const data = await requestData(config.path)
-  generateDefinitions(data)
-  process.on('exit', function () {
-    console.log(
-      `The source code is at ${colors.green(
-        'https://github.com/evanchen0629/zyou'
-      )}. If you have any questions, please ask in issue, or you can email me at ${colors.green(
-        'chenchengzuo@zhongan.com'
-      )}`
-    )
+const program = new Command()
+program.version('0.0.5')
+program.parse()
+
+inquirer
+  .prompt(prompList)
+  .then((answers: { type: keyof typeof typeMapping }) => {
+    typeMapping[answers.type]()
   })
-}
-main()

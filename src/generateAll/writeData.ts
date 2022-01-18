@@ -1,9 +1,9 @@
-import { quicktypeJSONSchema } from './quickType'
+import { quicktypeJSONSchema } from '../quickType'
 import {
   formatParamsInterface,
   formatParamsName,
   formatResponseName,
-} from './utils'
+} from '../utils'
 import fs from 'fs'
 import getConfig from './getConfig'
 import path from 'path'

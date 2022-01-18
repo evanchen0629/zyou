@@ -1,6 +1,6 @@
 {
-  "path": "http://wework-scrm-operation.test.za-tech.net/v2/api-docs",
-  "paramsAlias": "params1",
-  "responseAlias": "response1",
+  "path": "https://petstore.swagger.io/v2/swagger.json",
+  "paramsAlias": "params",
+  "responseAlias": "response",
   "output": "src/types"
 }

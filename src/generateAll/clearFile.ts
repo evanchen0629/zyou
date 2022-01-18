@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { mkdirsSync } from './utils'
+import { mkdirsSync } from '../utils'
 export default function clearFile(config: any) {
   if (!fs.existsSync(path.resolve(process.cwd(), config.output))) {
     mkdirsSync(path.resolve(process.cwd(), config.output))

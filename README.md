@@ -29,8 +29,8 @@ Zyou 是一个用于生成「前端接口层代码」以及对应「TypeScript �
 
    ```json
    {
-     "path": "http://swagger.io", // swagger的地址
-     "paramsAlias": "params",	// 请求参数的文件名
+     "path": "https://petstore.swagger.io/v2/swagger.json", // swagger的地址
+     "paramsAlias": "params", // 请求参数的文件名
      "responseAlias": "response", // 响应参数的文件名
      "output": "src/types" // 生成的文件存放的地址
    }
@@ -38,7 +38,7 @@ Zyou 是一个用于生成「前端接口层代码」以及对应「TypeScript �
 
 4. 添加命令
 
-   在package.json的script添加命令
+   在 package.json 的 script 添加命令
 
    ```json
      "scripts": {
@@ -55,5 +55,4 @@ Zyou 是一个用于生成「前端接口层代码」以及对应「TypeScript �
 
 ## 常见问题
 
-- 常见问题太多了,就不列举了,有什么地方使用的不爽请联系邮箱chenchengzuo@zhongan.com,最后欢迎大家fork&pr
-
+- 常见问题太多了,就不列举了,有什么地方使用的不爽请联系邮箱chenchengzuo@zhongan.com,最后欢迎大家 fork&pr

@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { formatParamsInterface } from './utils'
+import { formatParamsInterface } from '../utils'
 import writeData from './writeData'
 
 export default (data: any) => {
