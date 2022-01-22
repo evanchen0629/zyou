@@ -49,13 +49,70 @@ export const search = (object: Record<string, any>, value: string): any => {
   }
 }
 
-export function mkdirsSync(dirname: any) {
+export function mkdirsSync(dirname: string) {
   if (fs.existsSync(dirname)) {
     return true
   } else {
     if (mkdirsSync(path.dirname(dirname))) {
-      fs.mkdirSync(dirname)
+      if (dirname.endsWith('ts')) {
+        fs.writeFileSync(dirname, '')
+      } else {
+        fs.mkdirSync(dirname)
+      }
       return true
     }
+  }
+}
+
+export const params2jsonschema = (
+  params: any[],
+  definitions: any,
+  methods: string,
+  path: any
+) => {
+  if (methods === 'post') {
+    try {
+      const definitionsKey = params[0].schema.$ref
+      if (!definitionsKey) return {}
+      return {
+        definitions,
+        $ref: definitionsKey,
+      }
+    } catch (error) {
+      return {}
+    }
+  }
+  if (methods === 'get') {
+    return getParams2jsonschema(params)
+  }
+}
+
+export const getParams2jsonschema = (params: any[]) => {
+  if (!params) return {}
+  const properties = params.reduce((acc, cur) => {
+    acc[cur.name] = {
+      type: cur.type,
+      format: cur.format,
+      description: cur.description,
+      allowEmptyValue: false,
+    }
+    return acc
+  }, {})
+  return {
+    type: 'object',
+    properties,
+  }
+}
+
+export const response2jsonschema = (response: any, definitions: any) => {
+  try {
+    const definitionsKey = response.schema.$ref
+    if (!definitionsKey) return {}
+    return {
+      definitions,
+      $ref: definitionsKey,
+    }
+  } catch (error) {
+    return {}
   }
 }

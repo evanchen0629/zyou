@@ -11,4 +11,5 @@ export declare const prompList: {
 export declare const typeMapping: {
     init: () => void;
     generateAll: typeof generateAll;
+    generateFormPath: () => Promise<void>;
 };

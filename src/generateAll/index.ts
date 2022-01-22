@@ -17,7 +17,7 @@ async function generateAll() {
       `The source code is at ${colors.green(
         'https://github.com/evanchen0629/zyou'
       )}. If you have any questions, please ask in issue, or you can email me at ${colors.green(
-        'chenchengzuo@zhongan.com'
+        'cczapp@163.com'
       )}`
     )
   })
