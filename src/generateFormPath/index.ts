@@ -4,6 +4,7 @@ import requestData from '../generateAll/requestData'
 import generate from './generate'
 import colors from 'colors'
 import writeData from './writeData'
+import clear from './clear'
 
 export default async () => {
   const { path, methods } = await inquirer.prompt([
@@ -20,6 +21,7 @@ export default async () => {
     },
   ])
   const config = getConfig()
+  clear(config)
   const data = await requestData(config.path)
   try {
     const { paramsJsonSchema, responseJsonSchema } = await generate(

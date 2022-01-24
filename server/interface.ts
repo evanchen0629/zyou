@@ -1,18 +1,30 @@
-/**
- * 应用场景表
- */
-export interface IApplySceneDeleteRequest {
+export interface IPetRequest {
+    category?:  Category;
+    id?:        number;
+    name?:      string;
+    photoUrls?: string[];
     /**
-     * 主键id
+     * pet status in the store
      */
-    id?: number;
+    status?: Status;
+    tags?:   Tag[];
 }
-export interface IApplySceneDeleteResponse {
-    fail?:              boolean;
-    ok?:                boolean;
-    result?:            { [key: string]: any };
-    returnCode?:        string;
-    returnMsg?:         string;
-    systemCurrentTime?: Date;
-    traceId?:           string;
+
+export interface Category {
+    id?:   number;
+    name?: string;
+}
+
+/**
+ * pet status in the store
+ */
+export enum Status {
+    Available = "available",
+    Pending = "pending",
+    Sold = "sold",
+}
+
+export interface Tag {
+    id?:   number;
+    name?: string;
 }

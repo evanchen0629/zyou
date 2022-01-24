@@ -25,29 +25,4 @@ export default (data: any, pathParams: string, methodsPatams: string) => {
 
   const responseJsonSchema = response2jsonschema(response, data.definitions)
   return Promise.resolve({ paramsJsonSchema, responseJsonSchema })
-
-  //   Reflect.ownKeys(data.paths).forEach(async (path, index) => {
-  //     try {
-  //       Reflect.ownKeys(data.paths[path]).forEach(async (methods) => {
-  //         const params = data.paths[path][methods]?.parameters
-  //         const paramsJsonSchema = params2jsonschema(
-  //           params,
-  //           data.definitions,
-  //           methods as string,
-  //           path
-  //         )
-  //         const response = data.paths[path][methods].responses['200']
-
-  //         const responseJsonSchema = response2jsonschema(
-  //           response,
-  //           data.definitions
-  //         )
-  //         if (pathParams === path) {
-  //           return { paramsJsonSchema, responseJsonSchema }
-  //         }
-  //       })
-  //     } catch (error) {
-  //       console.log(path)
-  //     }
-  //   })
 }

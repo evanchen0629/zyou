@@ -55,7 +55,7 @@ export function mkdirsSync(dirname: string) {
   } else {
     if (mkdirsSync(path.dirname(dirname))) {
       if (dirname.endsWith('ts')) {
-        fs.writeFileSync(dirname, '')
+        fs.writeFileSync(dirname, '', { flag: 'w' })
       } else {
         fs.mkdirSync(dirname)
       }

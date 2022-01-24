@@ -21,8 +21,6 @@ export default async function writeData(
     typeMapping(config)[type].format(path),
     JSON.stringify(data)
   )
-  const isExistsFile = fs.existsSync(typeMapping(config)[type].writePath)
-  if (!isExistsFile) mkdirsSync(typeMapping(config)[type].writePath)
   fs.writeFileSync(typeMapping(config)[type].writePath, lines.join('\n'), {
     flag: 'a+',
   })
