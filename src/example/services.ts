@@ -1,31 +1,23 @@
-/** 业务线列表 */
-export const getBusinessLineListAll = {
+/** 获取图书 */
+export const getBook = {
   service: {
-    url: '/wework-scrm-user/businessLine/listAll',
+    url: '/getBook',
     method: 'GET',
   },
   prefix: 'Scrm',
 }
-// 获取客群列表
-export const getSelectList = {
+// 更改图书
+export const bookCreateOrUpdate = {
   service: {
-    url: '/customerGroup/getSelectList',
-    method: 'GET',
-  },
-  prefix: 'Agent',
-}
-// 新增/更改客群分类
-export const customerGroupCreateOrUpdate = {
-  service: {
-    url: '/customerGroup/createOrUpdate',
+    url: '/bookCreateOrUpdate',
     method: 'POST',
   },
   prefix: 'Agent',
 }
-// 删除客群分类
-export const customerGroupDeleteById = {
+// 删除图书
+export const bookDeleteById = {
   service: {
-    url: '/customerGroup/deleteById',
+    url: '/bookDeleteById',
     method: 'POST',
   },
   prefix: 'Agent',

@@ -1,26 +1,19 @@
-/** 业务线列表 */
-export declare const getBusinessLineListAll: {
+/** 获取图书 */
+export declare const getBook: {
     service: {
         url: string;
         method: string;
     };
     prefix: string;
 };
-export declare const getSelectList: {
+export declare const bookCreateOrUpdate: {
     service: {
         url: string;
         method: string;
     };
     prefix: string;
 };
-export declare const customerGroupCreateOrUpdate: {
-    service: {
-        url: string;
-        method: string;
-    };
-    prefix: string;
-};
-export declare const customerGroupDeleteById: {
+export declare const bookDeleteById: {
     service: {
         url: string;
         method: string;
