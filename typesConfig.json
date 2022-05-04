@@ -3,5 +3,10 @@
   "paramsAlias": "params",
   "responseAlias": "response",
   "output": "src/types",
-  "generateFormPath": "server/interface.ts"
+  "generateFormPath": "server/interface.ts",
+  "generateFormModule": {
+    "path": "src/example",
+    "scrm": "http://wework-scrm-user.test.za-tech.net/v2/api-docs",
+    "agent": "http://132842-wxtech-lighthouse.test.za-tech.net/v2/api-docs"
+  }
 }

@@ -12,5 +12,5 @@ export declare const typeMapping: {
     init: () => void;
     generateAll: typeof generateAll;
     generateFormPath: () => Promise<void>;
-    generateFormModule: () => Promise<void>;
+    generateFormModule: () => void;
 };

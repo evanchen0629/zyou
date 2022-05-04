@@ -1,6 +1,6 @@
 {
   "name": "zyou",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "bin": {
     "zyou": "bin/run.js"
   },
@@ -13,6 +13,7 @@
   "author": "chenchengzuo",
   "license": "ISC",
   "dependencies": {
+    "@swc/core": "^1.2.176",
     "axios": "^0.24.0",
     "colors": "^1.4.0",
     "commander": "^8.3.0",

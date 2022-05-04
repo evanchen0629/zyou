@@ -30,10 +30,3 @@ export declare const response2jsonschema: (response: any, definitions: any) => {
     definitions: any;
     $ref: any;
 };
-/**
- * 路径是否存在，不存在则创建
- * @param {string} dir 路径
- */
-export declare function dirExists(dir: string): Promise<unknown>;
-export declare function emptyDir(filePath: string): void;
-export declare function rmEmptyDir(filePath: string): void;
