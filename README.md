@@ -39,8 +39,11 @@ Zyou 是一个用于生成「前端接口层代码」以及对应「TypeScript �
      "generateFormPath": "server/interface.ts", // 生成一条类型,保存接口类型的文件地址
      "generateFormModule": { // 使用模块化功能时需配置
        "path": "src/example", // 页面路径
-       "scrm": "https://petstore.swagger.io/v2/swagger.json", // 当一个页面使用多套接口可以来这里配置
-       "agent": "https://petstore.swagger.io/v2/swagger.json" // 同上
+       "urlMapping": {
+         "wework-scrm-user": "https://petstore.swagger.io/v2/swagger.json",
+         "wework-scrm-operation": "https://petstore.swagger.io/v2/swagger.json",
+         "agent": "https://petstore.swagger.io/v2/swagger.json"
+       }
      }
    }
    ```
@@ -57,13 +60,13 @@ Zyou 是一个用于生成「前端接口层代码」以及对应「TypeScript �
 - 选择生成单条类型,会根据配置文件中的path接口地址,以generateFormPath为目标地址添加请求和响应类型
 - 选择模块化生成, 需在页面路径下写一个services.ts文件,
 
-**注意**:一定要按照规范写services文件,否则会有问题,获取文件内容时采用的是 [SWC](https://swc.rs/),获取ast采用的是数组下标获取的,所以如果顺序写错了,会获取失败的
+**注意**:一定要按照规范写services.ts文件,否则会有问题,获取文件内容时采用的是 [SWC](https://swc.rs/),获取ast采用的是数组下标获取的,所以如果顺序写错了,会获取失败的
 
 ```ts
 /** 获取图书 */
 export const getBook = {
   service: {
-    url: '/getBook',
+    url: 'getBook',
     method: 'GET',
   },
   prefix: 'Scrm',
@@ -71,7 +74,7 @@ export const getBook = {
 // 更改图书
 export const bookCreateOrUpdate = {
   service: {
-    url: '/bookCreateOrUpdate',
+    url: 'bookCreateOrUpdate',
     method: 'POST',
   },
   prefix: 'Agent',
@@ -79,7 +82,7 @@ export const bookCreateOrUpdate = {
 // 删除图书
 export const bookDeleteById = {
   service: {
-    url: '/bookDeleteById',
+    url: 'bookDeleteById',
     method: 'POST',
   },
   prefix: 'Agent',

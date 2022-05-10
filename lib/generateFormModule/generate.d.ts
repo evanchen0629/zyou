@@ -1,4 +1,4 @@
-declare const _default: (data: any, pathParams: string, methodsPatams: string) => Promise<{
+declare const _default: (data: any, path: string, methodsPatams: string) => Promise<{
     paramsJsonSchema: {
         type?: undefined;
         properties?: undefined;

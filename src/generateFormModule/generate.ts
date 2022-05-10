@@ -1,10 +1,11 @@
 import { params2jsonschema, response2jsonschema } from '../utils'
 
-export default (data: any, pathParams: string, methodsPatams: string) => {
+export default (data: any, path: string, methodsPatams: string) => {
+  const pathParams = `/${path}`
   const hasPath = Reflect.ownKeys(data.paths).includes(pathParams)
   if (!hasPath) {
     return Promise.reject(
-      `${pathParams}地址不正确, 请输入正确的请求地址,例如/abc/test`
+      `${pathParams}地址不正确, 请输入正确的请求地址,例如abc/test`
     )
   }
   const hasMethods = Reflect.ownKeys(data.paths?.[pathParams] ?? {}).includes(

@@ -14,7 +14,15 @@ export default async function writeData(
   const { lines } = await quicktypeJSONSchema(
     'TypeScript',
     typeMapping(config)[type].format(
-      path.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase())
+      path
+        .split('')
+        .map((item, i) => {
+          if (i === 0) {
+            return item.toUpperCase()
+          }
+          return item
+        })
+        .join('')
     ),
     JSON.stringify(data)
   )
