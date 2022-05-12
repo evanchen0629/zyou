@@ -73,7 +73,12 @@ export const params2jsonschema = (
   if (methods === 'post') {
     try {
       const definitionsKey = params[0].schema.$ref
-      if (!definitionsKey) return {}
+      if (!definitionsKey) {
+        return {
+          definitions,
+          $ref: params[0].schema.items.$ref,
+        }
+      }
       return {
         definitions,
         $ref: definitionsKey,
