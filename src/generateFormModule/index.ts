@@ -1,5 +1,6 @@
 import getConfig from '../generateAll/getConfig'
 import fs from 'fs'
+import * as pathTemp from 'path'
 import colors from 'colors'
 import { dirExists, emptyDir, rmEmptyDir } from '../utils'
 import generate from './generate'
@@ -12,6 +13,13 @@ export default async () => {
     generateFormModule: { path, urlMapping },
   } = getConfig()
   const services = fs.readFileSync(`${path}/services.ts`, 'utf-8')
+  // 如果目标目录下有配置文件则采用当前目录下的配置文件,如果没有采用全局的
+  let urlMappingTemp = urlMapping
+  const configPath = pathTemp.resolve(`${path}/typesConfig.json`)
+  if (configPath && fs.existsSync(configPath)) {
+    urlMappingTemp = require(configPath).urlMapping
+  }
+  // 解析目录下的service文件
   const { body } = await swc.parse(services, {
     syntax: 'typescript',
   })
@@ -27,8 +35,11 @@ export default async () => {
     }
   })
   const urlMappingList = await Promise.all(
-    Reflect.ownKeys(urlMapping).map(async (item) => {
-      const data = await requestData(urlMapping[item])
+    Reflect.ownKeys(urlMappingTemp).map(async (item) => {
+      const data = await requestData(urlMappingTemp[item]).catch((err) => {
+        console.log(colors.red(err + '请确定url是否正确或接口地址能否正常访问'))
+        process.exit()
+      })
       return { key: item, data }
     })
   )
@@ -58,8 +69,12 @@ export default async () => {
       await writeData('params', item.name, paramsJsonSchema)
       await writeData('response', item.name, responseJsonSchema)
     } catch (error) {
-      console.log(`${item.url.split('/').splice(1, 2).join('/')}`)
-      console.log(colors.red(error as string))
+      console.log(
+        colors.red(
+          `${item.url},该接口是否存在或者是否将该接口请求url配置到urlMapping中`
+        )
+      )
+      process.exit()
     }
   })
 
