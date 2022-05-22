@@ -5,8 +5,11 @@
   "output": "src/types",
   "generateFormPath": "server/interface.ts",
   "generateFormModule": {
-    "path": "src/example",
-    "scrm": "https://petstore.swagger.io/v2/swagger.json",
-    "agent": "https://petstore.swagger.io/v2/swagger.json"
+    "path": "src/pages/example",
+    "urlMapping": {
+      "wework-scrm-user": "https://petstore.swagger.io/v2/swagger.json",
+      "wework-scrm-operation": "https://petstore.swagger.io/v2/swagger.json",
+      "agent": "https://petstore.swagger.io/v2/swagger.json"
+    }
   }
 }

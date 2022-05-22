@@ -1,6 +1,6 @@
 # Zyou(放串天猴的声音)
 
-Zyou 是一个用于生成「前端接口层代码」以及对应「TypeScript 定义」的工具。你只需要提供一个 Swagger 链接目前，支持生成全部类型,和单个接口类型。
+Zyou 是一个用于生成「前端接口层代码」以及对应「TypeScript 定义」的工具。你只需要提供一个 Swagger 链接目前，支持生成全部类型,和单个接口类型以及模块化生成。
 
 ## 为什么使用 Zyou？
 
@@ -59,6 +59,20 @@ Zyou 是一个用于生成「前端接口层代码」以及对应「TypeScript �
 - 选择生成全部,会根据配置文件中的path接口地址,生成所有接口放到output输入的地址中,将以paramsAlias为请求类型文件名,以responseAlias响应类型文件名生成全部接口
 - 选择生成单条类型,会根据配置文件中的path接口地址,以generateFormPath为目标地址添加请求和响应类型
 - 选择模块化生成, 需在页面路径下写一个services.ts文件,当页面配置typesConfig.json文件时,会优先读取页面配置
+
+页面级别的typesConfig.json
+
+```json
+{
+    "urlMapping": {
+      "wework-scrm-user": "https://petstore.swagger.io/v2/swagger.json",
+      "wework-scrm-operation": "https://petstore.swagger.io/v2/swagger.json",
+      "agent": "https://petstore.swagger.io/v2/swagger.json"
+    }
+}
+```
+
+
 
 **注意**:一定要按照规范写services.ts文件,否则会有问题,获取文件内容时采用的是 [SWC](https://swc.rs/),获取ast采用的是数组下标获取的,所以如果顺序写错了,会获取失败的
 
