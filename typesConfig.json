@@ -1,5 +1,6 @@
 {
   "path": "https://petstore.swagger.io/v2/swagger.json",
+  "type": "swagger",
   "paramsAlias": "params",
   "responseAlias": "response",
   "output": "src/types",

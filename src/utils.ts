@@ -112,7 +112,7 @@ export const getParams2jsonschema = (params: any[]) => {
 export const response2jsonschema = (response: any, definitions: any) => {
   try {
     const definitionsKey = response.schema.$ref
-    if (!definitionsKey) return {}
+    if (!definitionsKey) return {...response.schema}
     return {
       definitions,
       $ref: definitionsKey,

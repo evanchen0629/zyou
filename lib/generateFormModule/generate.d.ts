@@ -9,12 +9,6 @@ declare const _default: (data: any, path: string, methodsPatams: string) => Prom
         definitions: any;
         $ref: any;
     } | undefined;
-    responseJsonSchema: {
-        definitions?: undefined;
-        $ref?: undefined;
-    } | {
-        definitions: any;
-        $ref: any;
-    };
+    responseJsonSchema: any;
 }>;
 export default _default;

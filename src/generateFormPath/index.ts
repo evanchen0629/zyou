@@ -5,6 +5,8 @@ import generate from './generate'
 import colors from 'colors'
 import writeData from './writeData'
 import clear from './clear'
+import fs from 'fs'
+import pathTemp from 'path'
 
 export default async () => {
   const { path, methods } = await inquirer.prompt([
@@ -22,7 +24,16 @@ export default async () => {
   ])
   const config = getConfig()
   clear(config)
-  const data = await requestData(config.path)
+  let data
+  if (config.type && config.type === 'zapi') {
+    const configPath = pathTemp.resolve('swaggerApi.json')
+    if (configPath && fs.existsSync(configPath)) {
+      data = require(configPath)
+    }
+  }else {
+    data = await requestData(config.path)
+  }
+
   try {
     const { paramsJsonSchema, responseJsonSchema } = await generate(
       data,
@@ -31,8 +42,8 @@ export default async () => {
     )
     await writeData('params', path, paramsJsonSchema)
     await writeData('response', path, responseJsonSchema)
-    console.log(colors.green('成功生成: )'))
+    
   } catch (error) {
-    console.log(colors.red(error as string))
+    
   }
 }

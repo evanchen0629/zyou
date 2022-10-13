@@ -9,12 +9,6 @@ declare const _default: (data: any, pathParams: string, methodsPatams: string) =
         definitions: any;
         $ref: any;
     } | undefined;
-    responseJsonSchema: {
-        definitions?: undefined;
-        $ref?: undefined;
-    } | {
-        definitions: any;
-        $ref: any;
-    };
+    responseJsonSchema: any;
 }>;
 export default _default;

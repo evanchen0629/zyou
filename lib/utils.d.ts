@@ -23,13 +23,7 @@ export declare const getParams2jsonschema: (params: any[]) => {
     type: string;
     properties: any;
 };
-export declare const response2jsonschema: (response: any, definitions: any) => {
-    definitions?: undefined;
-    $ref?: undefined;
-} | {
-    definitions: any;
-    $ref: any;
-};
+export declare const response2jsonschema: (response: any, definitions: any) => any;
 /**
  * 路径是否存在，不存在则创建
  * @param {string} dir 路径
