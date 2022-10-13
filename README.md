@@ -33,6 +33,7 @@ Zyou 是一个用于生成「前端接口层代码」以及对应「TypeScript �
    ```json
    {
      "path": "https://petstore.swagger.io/v2/swagger.json", // swagger的地址
+     "type": "swagger" // 是否使用zapi
      "paramsAlias": "params", // 请求参数的文件名
      "responseAlias": "response", // 响应参数的文件名
      "output": "src/types", // 生成的文件存放的地址
@@ -104,7 +105,15 @@ export const bookDeleteById = {
 
 ```
 
+### 关于zapi
 
+1.打开接口地址![image-20221013170134805](https://tva1.sinaimg.cn/large/008vxvgGgy1h73roqm6fjj30lp0gh3zn.jpg)
+
+2.将下载swaggerApi.json放到项目的根目录
+
+3.将typesConfig.json中的type改成zapi
+
+4.目前zapi仅支持单接口生成
 
 ## 常见问题
 
