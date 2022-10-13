@@ -3,7 +3,7 @@ import inquirer from 'inquirer'
 import { typeMapping, prompList } from './typeMapping'
 
 const program = new Command()
-program.version('0.1.2')
+program.version('0.1.3')
 program.parse()
 
 inquirer
